@@ -1,12 +1,15 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { MatIconModule, MatToolbarModule } from '@angular/material';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        MatIconModule,
+        MatToolbarModule
       ],
       declarations: [
         AppComponent
@@ -20,16 +23,11 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'ambulance-spa'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('ambulance-spa');
-  });
-
-  it('should render title in a h1 tag', () => {
+  it(`should have toolbar and icon'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to ambulance-spa!');
+    const approot: HTMLElement = fixture.debugElement.nativeElement;
+    const toolbar: HTMLElement = approot.querySelector('mat-toolbar');
+    expect(toolbar.querySelector('mat-icon')).toBeDefined();
   });
 });
